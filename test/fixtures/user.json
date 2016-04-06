@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "email": "user1@test.com",
+    "password": "user1pwd",
+    "firstName": "John",
+    "lastName": "Doe",
+    "dailyCaloriesLimit": 1000
+  }
+]
