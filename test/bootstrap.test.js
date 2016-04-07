@@ -15,6 +15,7 @@ before(function (done) {
     },
     models: {
       connection: 'test',
+      // connection: 'someMongodbServer',
       migrate: 'drop'
     },
     hooks: {

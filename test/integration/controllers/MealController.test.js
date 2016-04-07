@@ -39,7 +39,7 @@ describe('MealController', function () {
           var meal = res.body;
           //console.log(meal);
           id = res.body.id;
-          
+
           expect(meal.title).be.equal('lunch1');
           expect(meal.calories).be.equal(1234);
           expect(meal.eatenAtTime).be.equal(1320);
@@ -51,12 +51,12 @@ describe('MealController', function () {
           Meal.findOne(id).exec(function (err, meal) {
             if (err) return done(err);
 
-            expect(meal.owner).to.be.equal(13);
+            expect(meal.title).to.be.eql('lunch1');
             return done();
           });
         });
     });
-    
+
     it('Can GET /meal/:id', function (done) {
       request(sails.hooks.http.app)
         .get('/meal/' + id)
@@ -67,7 +67,7 @@ describe('MealController', function () {
           var meal = res.body;
           //console.log(meal);
           id = res.body.id;
-          
+
           expect(meal.title).be.equal('lunch1');
           expect(meal.calories).be.equal(1234);
           expect(meal.eatenAtTime).be.equal(1320);
@@ -90,7 +90,7 @@ describe('MealController', function () {
         .expect(200)
         .expect(function(res){
           var meal = res.body;
-          
+
           expect(meal.title).be.equal('lunch1-updated');
           expect(meal.calories).be.equal(9876);
           expect(meal.eatenAtTime).be.equal(1809);
@@ -125,7 +125,7 @@ describe('MealController', function () {
         .expect(200)
         .expect(function(res){
           var meal = res.body;
-          
+
           expect(meal.title).be.equal('lunch1-updated-partial');
           expect(meal.calories).be.equal(9876);
           expect(meal.eatenAtTime).be.equal(1809);
@@ -154,7 +154,7 @@ describe('MealController', function () {
         .delete('/meal/' + id)
         .set('Authorization', 'JWT ' + token)
         .expect('Content-Type', /json/)
-        .expect(200)        
+        .expect(200)
         .end(done);
     });
 
@@ -163,7 +163,7 @@ describe('MealController', function () {
         .get('/meal/' + id)
         .set('Authorization', 'JWT ' + token)
         .expect('Content-Type', /html/)
-        .expect(404)        
+        .expect(404)
         .end(done);
     });
 
