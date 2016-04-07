@@ -4,58 +4,57 @@
  */
 
 module.exports = {
-  schema: true,
+    schema: true,
 
-  attributes: {
+    attributes: {
 
-    email: {
-      type: 'email',
-      required: true,
-      unique: true
+        email: {
+            type: 'email',
+            required: true,
+            unique: true
+        },
+
+        password: {
+            type: 'string',
+            required: true
+        },
+
+        firstName: {
+            type: 'string',
+            defaultsTo: ''
+        },
+
+        lastName: {
+            type: 'string',
+            defaultsTo: ''
+        },
+
+        meals: {
+            collection: 'Meal',
+            via: 'owner'
+        },
+
+        dailyCaloriesLimit: {
+            type: "integer",
+            defaultsTo: 0
+        },
+
+        toJSON: function () {
+            var obj = this.toObject();
+
+            delete obj.password;
+
+            return obj;
+        }
     },
 
-    password: {
-      type: 'string',
-      required: true
+    beforeUpdate: function (values, next) {
+        CipherService.hashPassword(values);
+        next();
     },
 
-    firstName: {
-      type: 'string',
-      defaultsTo: ''
-    },
-
-    lastName: {
-      type: 'string',
-      defaultsTo: ''
-    },
-
-    meals: {
-      collection: 'Meal',
-      via: 'owner'
-    },
-
-    dailyCaloriesLimit: {
-      type: "integer",
-      defaultsTo: 0
-    },
-
-    toJSON: function () {
-      var obj = this.toObject();
-
-      delete obj.password;
-      // delete obj.socialProfiles;
-
-      return obj;
+    beforeCreate: function (values, next) {
+        CipherService.hashPassword(values);
+        next();
     }
-  },
-
-  beforeUpdate: function (values, next) {
-    CipherService.hashPassword(values);
-    next();
-  },
-
-  beforeCreate: function (values, next) {
-    CipherService.hashPassword(values);
-    next();
-  }
 };
