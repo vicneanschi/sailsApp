@@ -118,6 +118,31 @@ describe('UserController', function () {
             .end(done);
     });
 
+    xit('POST user/13/meals should create and assign owner', function (done) {
+        request(sails.hooks.http.app)
+            .post('/user/13/meals')
+            .set('Authorization', 'JWT ' + token)
+            .send({
+                title: 'lunch1',
+                calories: 1234,
+                eatenAtDate: '2016-01-01',
+                eatenAtTime: 1320
+            })
+            .expect(201)
+            .expect('Content-Type', /json/)
+            .expect(function(res){
+                var meal = res.body;
+                console.log(meal);
+                id = res.body.id;
+
+                expect(meal.title).be.equal('lunch1');
+                expect(meal.calories).be.equal(1234);
+                expect(meal.eatenAtTime).be.equal(1320);
+                expect(meal.eatenAtDate).contains('2016-01-01');
+                expect(meal.owner).be.equal(13);
+            })
+            .end(done);
+    });
 
     describe('Permissions', function () {
         describe('Admin', function () {
