@@ -48,10 +48,10 @@ describe('MealController', function () {
         .end(function (err, res) {
           if (err) return done(err);
 
-          Meal.find({title: 'lunch1'}).exec(function (err, meals) {
+          Meal.findOne(id).exec(function (err, meal) {
             if (err) return done(err);
 
-            expect(meals).to.have.length.at.least(1);
+            expect(meal.owner).to.be.equal(13);
             return done();
           });
         });

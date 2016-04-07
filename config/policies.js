@@ -28,15 +28,15 @@ module.exports.policies = {
         '*': true
     },
 
-    MealController: {
-        'read': 'isAdmin'
-
-    },
-
-    UserController: {
-        '*' : 'isAuthenticated',
-        'me': 'isAuthenticated'
-    }
+    // MealController: {
+    //     'read': 'isAdmin'
+    //
+    // },
+    //
+    // UserController: {
+    //     '*' : 'isAuthenticated',
+    //     'me': 'isAuthenticated'
+    // }
 
   /***************************************************************************
   *                                                                          *

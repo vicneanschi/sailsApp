@@ -37,7 +37,7 @@ module.exports.routes = {
     'GET /user/me': 'UserController.me',
     // 'GET /user/:id': 'UserController.findOne',
     // 'GET /user/:id/meals': 'UserController.getMealsByUserId',
-    'POST /meal': 'MealController.create'
+    // 'POST /meal': 'MealController.create'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
