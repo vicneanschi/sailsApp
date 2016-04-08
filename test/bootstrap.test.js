@@ -14,8 +14,8 @@ before(function (done) {
       level: 'error'
     },
     models: {
-      connection: 'test',
-      // connection: 'someMongodbServer',
+      // connection: 'test',
+      connection: 'someMongodbServer',
       migrate: 'drop'
     },
     hooks: {

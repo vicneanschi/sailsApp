@@ -14,10 +14,10 @@
     "passport-jwt": "^1.0.1",
     "passport-local": "^1.0.0",
     "rc": "1.0.1",
-    "sails": "~0.12.3",
+    "sails": "git+https://github.com/vicneanschi/sails.git",
     "sails-disk": "~0.10.9",
     "sails-memory": "0.10.6",
-    "sails-mongo": "0.12.0"
+    "sails-mongo": "git+https://github.com/vicneanschi/sails-mongo.git"
   },
   "scripts": {
     "start": "node app.js",

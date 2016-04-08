@@ -34,9 +34,10 @@ module.exports.routes = {
 
     'POST /auth/signin': 'AuthController.signin',
     'POST /auth/signup': 'AuthController.signup',
+
     'GET /user/me': 'UserController.me',
-    // 'GET /user/:id': 'UserController.findOne',
-    // 'GET /user/:id/meals': 'UserController.getMealsByUserId',
+    // 'GET /user/:id': {model: 'User', blueprint: "findOne"},
+    'POST /user/:id/:association': {response: 'notFound'},
     // 'POST /meal': 'MealController.create'
   /***************************************************************************
   *                                                                          *

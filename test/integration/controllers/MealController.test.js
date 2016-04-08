@@ -10,6 +10,7 @@ describe('MealController', function () {
 
   describe('when authenticated', function () {
     var id;
+    var userId;
 
     before(function (done) {
       request(sails.hooks.http.app)
@@ -20,6 +21,7 @@ describe('MealController', function () {
         .expect(function (res) {
           token = res.body.token;
           expect(token).to.be.ok;
+          userId = res.body.user.id;
         }).end(done);
     });
 
@@ -44,6 +46,7 @@ describe('MealController', function () {
           expect(meal.calories).be.equal(1234);
           expect(meal.eatenAtTime).be.equal(1320);
           expect(meal.eatenAtDate).contains('2016-01-01');
+          expect(meal.owner).be.equal(userId);
         })
         .end(function (err, res) {
           if (err) return done(err);
@@ -83,7 +86,7 @@ describe('MealController', function () {
         .send({
           title: 'lunch1-updated',
           calories: 9876,
-          eatenAtDate: '2012-05-12',
+          eatenAtDate: '2012-05-12 23:45',
           eatenAtTime: 1809
         })
         .expect('Content-Type', /json/)
@@ -94,7 +97,7 @@ describe('MealController', function () {
           expect(meal.title).be.equal('lunch1-updated');
           expect(meal.calories).be.equal(9876);
           expect(meal.eatenAtTime).be.equal(1809);
-          expect(meal.eatenAtDate).contains('2012-05-12');
+          expect(new Date(meal.eatenAtDate).getTime()).be.equal(new Date('2012-05-12 23:45').getTime());
         })
         .end(function (err, res) {
           if (err) return done(err);
@@ -108,7 +111,7 @@ describe('MealController', function () {
             expect(meal.title).be.equal('lunch1-updated');
             expect(meal.calories).be.equal(9876);
             expect(meal.eatenAtTime).be.equal(1809);
-            expect(meal.eatenAtDate).to.eql(new Date('2012-05-12'));
+            expect(meal.eatenAtDate.getTime()).to.eql(new Date('2012-05-12 23:45').getTime());
             return done();
           });
         });
@@ -129,7 +132,7 @@ describe('MealController', function () {
           expect(meal.title).be.equal('lunch1-updated-partial');
           expect(meal.calories).be.equal(9876);
           expect(meal.eatenAtTime).be.equal(1809);
-          expect(meal.eatenAtDate).contains('2012-05-12');
+          expect(new Date(meal.eatenAtDate).getTime()).to.equal(new Date('2012-05-12 23:45').getTime());
         })
         .end(function (err, res) {
           if (err) return done(err);
@@ -143,7 +146,7 @@ describe('MealController', function () {
             expect(meal.title).be.equal('lunch1-updated-partial');
             expect(meal.calories).be.equal(9876);
             expect(meal.eatenAtTime).be.equal(1809);
-            expect(meal.eatenAtDate).to.eql(new Date('2012-05-12'));
+            expect(meal.eatenAtDate.getTime()).be.equal(new Date('2012-05-12 23:45').getTime());
             return done();
           });
         });
@@ -167,7 +170,7 @@ describe('MealController', function () {
         .end(done);
     });
 
-
+    
     it('should not change owner');
 
 

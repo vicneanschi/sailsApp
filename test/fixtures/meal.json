@@ -1,28 +1,28 @@
 [
   {
     "title": "breakfast",
-    "calories": "500",
+    "calories": 500,
     "eatenAtDate": "2016-01-02",
     "eatenAtTime": 730,
     "owner": 1
   },
   {
     "title": "lunch",
-    "calories": "1000",
+    "calories": 1000,
     "eatenAtDate": "2016-01-02",
     "eatenAtTime": 1200,
     "owner": 1
   },
   {
     "title": "dinner",
-    "calories": "1500",
+    "calories": 1500,
     "eatenAtDate": "2016-01-02",
     "eatenAtTime": 1815,
     "owner": 1
   },
   {
     "title": "lunch2",
-    "calories": "999",
+    "calories": 999,
     "eatenAtDate": "2016-01-03",
     "eatenAtTime": 1230,
     "owner": 1
