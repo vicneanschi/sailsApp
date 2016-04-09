@@ -21,7 +21,8 @@ module.exports.policies = {
 
     '*': [
         'isAuthenticated',
-        'ownerPolicy'
+        'ownerPolicy',
+        // 'nocache'
     ],
 
     AuthController: {

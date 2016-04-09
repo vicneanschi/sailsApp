@@ -3,6 +3,7 @@
     "modules": {}
   },
   "hooks": {
+    "session": false,
     "grunt": false
   }
 }
